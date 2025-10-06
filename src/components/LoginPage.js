@@ -7,7 +7,7 @@ export default function LoginPage({ onLogin }) {
   const [motDePasse, setMotDePasse] = useState("");
   const [error, setError] = useState("");
 
-  const API_BASE_URL = "process.env.REACT_APP_API_URL;"
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   const handleLogin = async () => {
   try {
     const res = await axios.post(
