@@ -54,7 +54,8 @@ function CreationCompte() {
     data.append("mot_de_passe", "123456");
 
     try {
-      const res = await fetch("http://localhost:5000/api/auth/register", {
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
+      const res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         body: data,
       });
