@@ -86,9 +86,9 @@ export default function PrimarySearchAppBar({ user, setUser, onLogout }) {
     if (editedUser.newPassword) {
       updateData.mot_de_passe = editedUser.newPassword;
     }
-
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:5000/api/utilisateurs/${editedUser._id}`, {
+    const res = await fetch(`${API_BASE_URL}/utilisateurs/${editedUser._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
