@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;      
+  height: 150px;     
+  border-radius: 50%; 
+  color: white;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #7b2ff7, #f107a3);
+  box-shadow: 0 8px 20px rgba(123, 47, 247, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center; 
+}
+
+.cart:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(123, 47, 247, 0.6);
+}
+
+.number {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 5px;
+}
