@@ -22,10 +22,10 @@ export default function TableHistorique({ filter = "" }) {
   const [history, setHistory] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/transactions");
+      const res = await axios.get(`${API_BASE_URL}/transactions`);
       const formatted = res.data.map((t) => ({
         idTransaction: t._id,
         CompteEnvoyeur: t.idEnvoyeur?.numero_compte || "N/A",

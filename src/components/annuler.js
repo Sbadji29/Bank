@@ -27,7 +27,9 @@ export default function TableHistoriqueTransfert({ filter = "" }) {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/transactions");
+      const API_BASE_URL = process.env.REACT_APP_API_URL;
+       
+      const res = await axios.get(`${API_BASE_URL}/auth/transactions`);
       const formatted = res.data.map((t) => ({
         idTransaction: t._id,
         CompteEnvoyeur: t.idEnvoyeur?.numero_compte || "N/A",
@@ -46,7 +48,8 @@ export default function TableHistoriqueTransfert({ filter = "" }) {
   const handleAnnuler = async (idTransaction) => {
     if (window.confirm("Voulez-vous vraiment annuler cette transaction ?")) {
       try {
-        await axios.patch(`http://localhost:5000/api/transactions/depot/annuler/${idTransaction}`);
+          const API_BASE_URL = process.env.REACT_APP_API_URL;
+        await axios.patch(`${API_BASE_URL}/transactions/depot/annuler/${idTransaction}`);
         alert("Transaction annulée avec succès");
         fetchTransactions(); 
       } catch (err) {

@@ -5,13 +5,13 @@ import LoginPage from "./LoginPage";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(null);
-
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       // récupérer les infos de l'utilisateur connecté
       axios
-        .get("http://localhost:5000/api/auth/me", {
+        .get(`${API_BASE_URL}/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => setCurrentUser(res.data.user))
