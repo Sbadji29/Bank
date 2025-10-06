@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 export const getUsers = async () => {
-  const res = await axios.get(API_BASE_URL);
+  const res = await axios.get(`${API_BASE_URL}/utilisateurs`);
   return res.data;
 };  
 

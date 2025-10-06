@@ -4,7 +4,7 @@ import React from 'react';
 
 function UsersContent() {
   const [searchQuery, setSearchQuery] = React.useState('');
-
+  
   return (
     <div>
       <Search onSearch={setSearchQuery} />

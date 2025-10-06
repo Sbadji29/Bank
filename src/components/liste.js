@@ -14,27 +14,36 @@ export default function DataTable({ filter = '' }) {
   const [selectedUsers, setSelectedUsers] = React.useState([]);
   const [disabled, setDisabled] = React.useState(true);
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const users = await getUsers();
-        const formattedUsers = users.map(u => ({
-          id: u._id,
-          prenom: u.prenom,
-          nom: u.nom,
-          email: u.email,
-          numero_telephone: u.numero_telephone,
-          numero_compte: u.numero_compte,
-          statut: u.statut,
-          Status: u.statut === 0 ? 'Actif' : 'Bloqué',
-        }));
-        setRows(formattedUsers);
-      } catch (err) {
-        console.error('Erreur lors de la récupération des utilisateurs :', err);
-      }
-    };
-    fetchData();
-  }, []);
+React.useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const users = await getUsers();
+      const formattedUsers = users.map(u => ({
+        id: u._id,
+        prenom: u.prenom,
+        nom: u.nom,
+        email: u.email,
+        numero_telephone: u.numero_telephone,
+        numero_compte: u.numero_compte,
+        statut: u.statut,
+        Status: u.statut === 0 ? 'Actif' : 'Bloqué',
+      }));
+
+      // 🧠 Récupérer l'utilisateur connecté
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+      const userId = currentUser?._id;
+
+      // 🧹 Exclure le user connecté
+      const filteredUsers = formattedUsers.filter(u => u.id !== userId);
+
+      setRows(filteredUsers);
+    } catch (err) {
+      console.error('Erreur lors de la récupération des utilisateurs :', err);
+    }
+  };
+  fetchData();
+}, []);
+
 
   React.useEffect(() => {
     setDisabled(selectedUsers.length === 0);

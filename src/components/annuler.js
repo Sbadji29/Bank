@@ -29,7 +29,7 @@ export default function TableHistoriqueTransfert({ filter = "" }) {
     try {
       const API_BASE_URL = process.env.REACT_APP_API_URL;
        
-      const res = await axios.get(`${API_BASE_URL}/auth/transactions`);
+      const res = await axios.get(`${API_BASE_URL}/transactions`);
       const formatted = res.data.map((t) => ({
         idTransaction: t._id,
         CompteEnvoyeur: t.idEnvoyeur?.numero_compte || "N/A",

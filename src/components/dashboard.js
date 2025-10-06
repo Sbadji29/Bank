@@ -46,7 +46,7 @@ export default function PrimarySearchAppBar({ user, setUser, onLogout }) {
   const [openProfile, setOpenProfile] = React.useState(false);
   const [editMode, setEditMode] = React.useState(false);
   const [editedUser, setEditedUser] = React.useState(user);
-
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
   React.useEffect(() => {
     setEditedUser(user); // Met à jour quand user change
   }, [user]);
@@ -85,6 +85,8 @@ export default function PrimarySearchAppBar({ user, setUser, onLogout }) {
 
     if (editedUser.newPassword) {
       updateData.mot_de_passe = editedUser.newPassword;
+      handleLogout();
+      return;
     }
     const API_BASE_URL = process.env.REACT_APP_API_URL;
     const token = localStorage.getItem("token");
@@ -169,7 +171,7 @@ export default function PrimarySearchAppBar({ user, setUser, onLogout }) {
                 alt={user.prenom}
                 src={
                   user.photo 
-                    ? `http://localhost:5000/${user.photo.replace(/\\/g, "/")}` 
+                    ? `${API_BASE_URL}/${user.photo.replace(/\\/g, "/")}` 
                     : undefined
                 }
               >
@@ -276,7 +278,7 @@ export default function PrimarySearchAppBar({ user, setUser, onLogout }) {
       editedUser.newPhoto
         ? URL.createObjectURL(editedUser.newPhoto)
         : editedUser.photo
-        ? `http://localhost:5000/${editedUser.photo.replace(/\\/g, "/")}`
+        ? `${API_BASE_URL}/${editedUser.photo.replace(/\\/g, "/")}`
         : undefined
     }
     alt={editedUser.prenom}
