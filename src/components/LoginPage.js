@@ -7,7 +7,7 @@ export default function LoginPage({ onLogin }) {
   const [motDePasse, setMotDePasse] = useState("");
   const [error, setError] = useState("");
 
-  const API_BASE_URL = "https://bankbackend-4.onrender.com/";
+  const API_BASE_URL = "process.env.REACT_APP_API_URL;"
   const handleLogin = async () => {
   try {
     const res = await axios.post(
